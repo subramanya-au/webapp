@@ -1,0 +1,13 @@
+#this workflow is to deploy in all the environments
+name: web-app-release
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  continuous-deployment:
+    uses: subramanya-au/k8s-manifests/.github/workflows/webapp.yaml@main
+
+  
