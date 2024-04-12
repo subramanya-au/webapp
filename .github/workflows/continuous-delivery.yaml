@@ -18,6 +18,7 @@ jobs:
     uses: subramanya-au/k8s-manifests/.github/workflows/webapp.yaml@main
     with:
       IMAGE_NAME: webapp
+      repository: subramanya-au/webapp
     secrets:
       docker_username: ${{ secrets.DOCKER_USERNAME }}
       docker_password: ${{ secrets.DOCKERHUB_TOKEN }}
