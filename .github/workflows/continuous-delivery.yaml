@@ -16,4 +16,8 @@ jobs:
 
   continuous-deployment:
     uses: subramanya-au/k8s-manifests/.github/workflows/webapp.yaml@main
+    with:
+      docker_username: ${{ secrets.DOCKER_USERNAME}}
+      docker_password: ${{ secrets.DOCKERHUB_TOKEN}}
+
 
