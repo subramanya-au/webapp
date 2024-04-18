@@ -8,61 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  # # Continuous Integration
-  # building-docker-image:
-  #   name: Build Docker Image
-  #   runs-on: ubuntu-latest
-  #   # needs: 
-  #   #   - check 
-  #   env:
-  #     IMAGE_NAME: webapp
-  #     BRANCH_TO_TAG_WITH_LATEST: main
-  #   outputs:
-  #     docker_image: ${{ steps.image_sha.outputs.docker_image }}
-
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v4
-
-  #     - name: Login to Docker Registry
-  #       uses: docker/login-action@v3
-  #       with:
-  #         username: sunil0019
-  #         password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-  #     - name: Docker Metadata
-  #       uses: docker/metadata-action@v5
-  #       id: meta
-  #       with:
-  #         images: |
-  #           sunil0019/${{ env.IMAGE_NAME }}
-  #         tags: |
-  #           type=sha
-  #           type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', env.BRANCH_TO_TAG_WITH_LATEST) }}
-  #           type=ref,event=branch
-  #         labels:
-  #           git-author-name=${{ github.event.head_commit.author.name }}
-  #           git-author-email=${{ github.event.head_commit.author.email }}
-  #           build-dir=${{ github.workspace }}/images/${{ env.IMAGE_NAME }}
-  #           build-origin=git-actions
-
-  #     - name: Build Docker Image
-  #       uses: docker/build-push-action@v5
-  #       with:
-  #         context: .
-  #         file: Dockerfile
-  #         push: true
-  #         tags: ${{ steps.meta.outputs.tags }}
-  #         labels: ${{ steps.meta.outputs.labels }}
-          
-  #     - name: Set SHA Image for k8s Deployment Pinning
-  #       id: image_sha
-  #       run: echo "docker_image=sunil0019/${{ env.IMAGE_NAME }}:sha-${GITHUB_SHA:0:7}" >> $GITHUB_OUTPUT
-
-  # Continuos deployment
-  continuous-deployment:
-    # needs: 
-    #   - building-docker-image 
+  cicd:
     uses: subramanya-au/k8s-manifests/.github/workflows/webapp.yaml@main
     with:
       IMAGE_NAME: webapp
