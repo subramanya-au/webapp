@@ -1,10 +1,9 @@
-name: "CodeQL"
+name: "CodeQL Scanning"
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   analyze:
@@ -50,3 +49,11 @@ jobs:
       with:
         category: "/language:${{matrix.language}}"
 
+    - name: Save CodeQL results to JSON
+      run: codeql bqrs decode --format=json $(find . -name 'results.bqrs') > codeql_results.json
+
+    - name: Upload JSON results
+      uses: actions/upload-artifact@v2
+      with:
+        name: codeql-results
+        path: codeql_results.json
