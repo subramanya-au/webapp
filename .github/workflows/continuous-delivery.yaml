@@ -19,6 +19,3 @@ jobs:
       docker_username: ${{ secrets.DOCKER_USERNAME }}
       docker_password: ${{ secrets.DOCKERHUB_TOKEN }}
       github_pat: ${{ secrets.MY_PAT }}
-
-
-
