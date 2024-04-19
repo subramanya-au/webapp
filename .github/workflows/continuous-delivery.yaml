@@ -13,7 +13,7 @@ jobs:
   cicd:
     uses: subramanya-au/k8s-manifests/.github/workflows/webapp.yaml@main
     with:
-      IMAGE_NAME: ${{ github.event.repository.name }}
+      # IMAGE_NAME: ${{ github.event.repository.name }}
       repository: ${{ github.repository }}
     secrets:
       docker_username: ${{ secrets.DOCKER_USERNAME }}
