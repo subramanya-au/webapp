@@ -1,4 +1,4 @@
-name: Code Scan
+name: code scan
 on:
 #   push:
 #     branches:

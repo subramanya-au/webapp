@@ -5,13 +5,15 @@ on:
     branches:
       - main
       - dev
+      - qual
+      - staging
   workflow_dispatch:
 
 jobs:
   cicd:
     uses: subramanya-au/k8s-manifests/.github/workflows/webapp.yaml@main
     with:
-      IMAGE_NAME: webapp
+      IMAGE_NAME: web-app-new
       repository: subramanya-au/webapp
     secrets:
       docker_username: ${{ secrets.DOCKER_USERNAME }}
