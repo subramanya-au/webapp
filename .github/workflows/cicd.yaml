@@ -25,7 +25,7 @@ jobs:
     needs:
       - continuous-integration
     with:
-      environment: dev
+      environment: test
     secrets:
       argocd_server: ${{ secrets.ARGOCD_SERVER }}
       argocd_username: ${{ secrets.ARGOCD_USERNAME }}
