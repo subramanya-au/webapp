@@ -10,8 +10,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  cicd:
-    uses: subramanya-au/k8s-manifests/.github/workflows/webapp.yaml@main
+  continuous-integration:
+    uses: subramanya-au/build-repo/.github/workflows/build-image.yaml@main
     with:
       # IMAGE_NAME: ${{ github.event.repository.name }}
       repository: ${{ github.repository }}
@@ -19,3 +19,11 @@ jobs:
       docker_username: ${{ secrets.DOCKER_USERNAME }}
       docker_password: ${{ secrets.DOCKERHUB_TOKEN }}
       github_pat: ${{ secrets.MY_PAT }}
+  
+  # continuos-delivery: 
+  #   uses: subramanya-au/k8s-manifests/.github/workflows/webapp.yaml@main 
+  #   needs:
+  #     - continuous-integration 
+
+  
+      
