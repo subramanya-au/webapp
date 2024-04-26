@@ -20,10 +20,18 @@ jobs:
       docker_password: ${{ secrets.DOCKERHUB_TOKEN }}
       github_pat: ${{ secrets.MY_PAT }}
   
-  # continuos-delivery: 
-  #   uses: subramanya-au/k8s-manifests/.github/workflows/webapp.yaml@main 
-  #   needs:
-  #     - continuous-integration 
+  continuos-delivery-dev: 
+    uses: subramanya-au/k8s-manifests/.github/workflows/webapp.yaml@main
+    needs:
+      - continuous-integration
+    secrets:
+      argocd_server: ${{ secrets.ARGOCD_SERVER }}
+      argocd_username: ${{ secrets.ARGOCD_USERNAME }}
+      argocd_password: ${{ secrets.ARGOCD_PASSWORD }}
+      git_username: ${{ secrets.GIT_USERNAME }}
+
+     
+
 
   
       
