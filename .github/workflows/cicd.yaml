@@ -24,6 +24,8 @@ jobs:
     uses: subramanya-au/k8s-manifests/.github/workflows/webapp.yaml@main
     needs:
       - continuous-integration
+    with:
+      environment: dev
     secrets:
       argocd_server: ${{ secrets.ARGOCD_SERVER }}
       argocd_username: ${{ secrets.ARGOCD_USERNAME }}
