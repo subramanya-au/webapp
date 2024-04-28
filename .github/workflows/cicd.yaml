@@ -10,20 +10,20 @@ on:
   workflow_dispatch:
 
 jobs:
-  # continuous-integration:
-  #   uses: subramanya-au/build-repo/.github/workflows/build-image.yaml@main
-  #   with:
-  #     # IMAGE_NAME: ${{ github.event.repository.name }}
-  #     repository: ${{ github.repository }}
-  #   secrets:
-  #     docker_username: ${{ secrets.DOCKER_USERNAME }}
-  #     docker_password: ${{ secrets.DOCKERHUB_TOKEN }}
-  #     github_pat: ${{ secrets.MY_PAT }}
+  continuous-integration:
+    uses: subramanya-au/build-repo/.github/workflows/build-image.yaml@main
+    with:
+      # IMAGE_NAME: ${{ github.event.repository.name }}
+      repository: ${{ github.repository }}
+    secrets:
+      docker_username: ${{ secrets.DOCKER_USERNAME }}
+      docker_password: ${{ secrets.DOCKERHUB_TOKEN }}
+      github_pat: ${{ secrets.MY_PAT }}
   
   continuous-delivery-dev:
     uses: subramanya-au/k8s-manifests/.github/workflows/webapp.yaml@main
-    # needs:
-    #   - continuous-integration
+    needs:
+      - continuous-integration
     with:
       environment: dev
     secrets:
@@ -31,9 +31,8 @@ jobs:
       argocd_username: ${{ secrets.ARGOCD_USERNAME }}
       argocd_password: ${{ secrets.ARGOCD_PASSWORD }}
       git_username: ${{ secrets.GIT_USERNAME }}
-      github_pat: ${{ secrets.MY_PAT }} 
-
-     
+      github_pat: ${{ secrets.MY_PAT }}
+    
 
 
   
