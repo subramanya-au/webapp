@@ -20,18 +20,18 @@ jobs:
       docker_password: ${{ secrets.DOCKERHUB_TOKEN }}
       github_pat: ${{ secrets.MY_PAT }}
   
-  continuous-delivery-dev:
-    uses: subramanya-au/k8s-manifests/.github/workflows/webapp.yaml@main
-    needs:
-      - continuous-integration
-    with:
-      environment: dev
-    secrets:
-      argocd_server: ${{ secrets.ARGOCD_SERVER }}
-      argocd_username: ${{ secrets.ARGOCD_USERNAME }}
-      argocd_password: ${{ secrets.ARGOCD_PASSWORD }}
-      git_username: ${{ secrets.GIT_USERNAME }}
-      github_pat: ${{ secrets.MY_PAT }}
+  # continuous-delivery-dev:
+  #   uses: subramanya-au/k8s-manifests/.github/workflows/webapp.yaml@main
+  #   needs:
+  #     - continuous-integration
+  #   with:
+  #     environment: dev
+  #   secrets:
+  #     argocd_server: ${{ secrets.ARGOCD_SERVER }}
+  #     argocd_username: ${{ secrets.ARGOCD_USERNAME }}
+  #     argocd_password: ${{ secrets.ARGOCD_PASSWORD }}
+  #     git_username: ${{ secrets.GIT_USERNAME }}
+  #     github_pat: ${{ secrets.MY_PAT }}
     
     # name: Deploy-to-Dev
     # runs-on: web-app
