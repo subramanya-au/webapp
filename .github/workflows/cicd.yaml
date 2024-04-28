@@ -51,7 +51,8 @@ jobs:
 
       - name: checking files
         run: |
-          ls -lart 
+          ls -lart
+          echo ${{ needs.continuous-integration.outputs.docker_image }}
       
       - name: ArgoCD Deployment
         run: |
