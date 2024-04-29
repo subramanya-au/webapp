@@ -20,55 +20,15 @@ jobs:
       docker_password: ${{ secrets.DOCKERHUB_TOKEN }}
       github_pat: ${{ secrets.MY_PAT }}
   
-  # continuous-delivery-dev:
-  #   uses: subramanya-au/k8s-manifests/.github/workflows/webapp.yaml@main
-  #   needs:
-  #     - continuous-integration
-  #   with:
-  #     environment: dev
-  #   secrets:
-  #     argocd_server: ${{ secrets.ARGOCD_SERVER }}
-  #     argocd_username: ${{ secrets.ARGOCD_USERNAME }}
-  #     argocd_password: ${{ secrets.ARGOCD_PASSWORD }}
-  #     git_username: ${{ secrets.GIT_USERNAME }}
-  #     github_pat: ${{ secrets.MY_PAT }}
-    
-    # name: Deploy-to-Dev
-    # runs-on: web-app
-    # # environment: 
-    # #   name: dev
-    # needs:
-    #   - continuous-integration
-    # timeout-minutes: 60
-    # # if: ${{ github.ref == 'refs/heads/main' && inputs.environment == 'dev'}}
-    # steps:
-    #   - name: Check out my other private repo
-    #     uses: actions/checkout@v4
-    #     with:
-    #       repository: subramanya-au/k8s-manifests
-    #       ref: main
-    #       token: ${{ secrets.MY_PAT }}
-
-    #   - name: checking files
-    #     run: |
-    #       ls -lart
-          
-    #   - name: Check Image name 
-    #     run: echo ${{ needs.continuous-integration.outputs.docker_image }}
-      
-    #   - name: ArgoCD Deployment
-    #     run: |
-    #       #Argocd Login
-    #       argocd login --insecure ${{ secrets.argocd_server }} --username ${{ secrets.argocd_username }} --password ${{ secrets.argocd_password }} --grpc-web
-
-    #       #Argocd repo add
-    #       argocd repo add https://github.com/subramanya-au/k8s-manifests.git --username ${{ secrets.git_username }} --password ${{ secrets.MY_PAT }} --insecure-skip-server-verification --grpc-web --upsert
-      
-    #       #Argocd app create
-    #       argocd app create webapp -f webapp/environments/sandbox/application.yaml --upsert
-          
-    #       # #Set Image
-    #       argocd app set webapp --kustomize-image ${{ needs.continuous-integration.outputs.docker_image }}
-
-  
-      
+  continuous-delivery-dev:
+    uses: subramanya-au/k8s-manifests/.github/workflows/webapp.yaml@main
+    needs:
+      - continuous-integration
+    with:
+      environment: dev
+    secrets:
+      argocd_server: ${{ secrets.ARGOCD_SERVER }}
+      argocd_username: ${{ secrets.ARGOCD_USERNAME }}
+      argocd_password: ${{ secrets.ARGOCD_PASSWORD }}
+      git_username: ${{ secrets.GIT_USERNAME }}
+      github_pat: ${{ secrets.MY_PAT }}
