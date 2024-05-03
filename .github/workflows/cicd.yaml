@@ -9,21 +9,24 @@ on:
       - staging
   workflow_dispatch:
 
+env:
+  APP_NAME: webapp
+
 jobs:
-  continuous-integration:
-    uses: subramanya-au/build-repo/.github/workflows/build-image.yaml@main
-    with:
-      # IMAGE_NAME: ${{ github.event.repository.name }}
-      repository: ${{ github.repository }}
-    secrets:
-      docker_username: ${{ secrets.DOCKER_USERNAME }}
-      docker_password: ${{ secrets.DOCKERHUB_TOKEN }}
-      github_pat: ${{ secrets.MY_PAT }}
+  # continuous-integration:
+  #   uses: subramanya-au/build-repo/.github/workflows/build-image.yaml@main
+  #   with:
+  #     # IMAGE_NAME: ${{ github.event.repository.name }}
+  #     repository: ${{ github.repository }}
+  #   secrets:
+  #     docker_username: ${{ secrets.DOCKER_USERNAME }}
+  #     docker_password: ${{ secrets.DOCKERHUB_TOKEN }}
+  #     github_pat: ${{ secrets.MY_PAT }}
   
   continuous-delivery-dev:
     uses: subramanya-au/k8s-manifests/.github/workflows/webapp.yaml@main
-    needs:
-      - continuous-integration
+    # needs:
+    #   - continuous-integration
     with:
       environment: dev
     secrets:
