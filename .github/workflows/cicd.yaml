@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 env:
-  APP_NAME: webapp
+  APP_NAME: ${{ github.repository }} 
 
 jobs:
   # continuous-integration:
@@ -29,6 +29,7 @@ jobs:
     #   - continuous-integration
     with:
       environment: dev
+      app_name: ${{ github.repository }} 
     secrets:
       argocd_server: ${{ secrets.ARGOCD_SERVER }}
       argocd_username: ${{ secrets.ARGOCD_USERNAME }}
