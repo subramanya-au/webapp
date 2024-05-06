@@ -29,7 +29,8 @@ jobs:
     #   - continuous-integration
     with:
       environment: dev
-      app_name: ${{ github.event.repository.name }} 
+      app_name: ${{ github.event.repository.name }}
+      github_url: ${{ github.repository }}
     secrets:
       argocd_server: ${{ secrets.ARGOCD_SERVER }}
       argocd_username: ${{ secrets.ARGOCD_USERNAME }}
