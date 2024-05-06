@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 env:
-  APP_NAME: ${{ github.event.repository.name }}
+  app_name: ${{ github.event.repository.name }}
 
 jobs:
   # continuous-integration:
